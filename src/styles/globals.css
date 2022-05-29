@@ -5,9 +5,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Titan+One&display=swap');
 
 section {
-  height: 100vh;
+  min-height: 100vh;
 }
 
 * {
   font-family: 'Lato', sans-serif;
+}
+
+.graphs {
+  background-image: url('/bg-virus.png');
+  background-size: contain;
+}
+
+#deads {
+  background-size: 100% 100%;
 }
