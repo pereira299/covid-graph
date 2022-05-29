@@ -78,7 +78,7 @@ const Home: NextPage = () => {
           <Image
             src="/tumulo.png"
             layout="responsive"
-            alt="ilustração de doente"
+            alt="ilustração de tumulo"
             width={290}
             height={300}
           />
@@ -88,6 +88,30 @@ const Home: NextPage = () => {
         <GraphSection title="Mortes por estado"></GraphSection>
         <GraphSection title="Mortes por idade"></GraphSection>
         <GraphSection title="Mortes por data"></GraphSection>
+      </section>
+      <section
+        className="flex flex-row bg-amber-500 pt-40 justify-around"
+        id="deads"
+      >
+        <div className="w-6/12 h-3/4">
+          <Image
+            src="/vacina.png"
+            layout="responsive"
+            alt="ilustração de vacina"
+            width={290}
+            height={200}
+          />
+        </div>
+        <div className="w-4/12 flex flex-col justify-center">
+          <p className="text-center text-white  font-bold text-7xl text-lato">
+            Vacinas <br/>aplicadas
+          </p>
+        </div>
+      </section>
+      <section>
+        <GraphSection title="Vacinas por estado"></GraphSection>
+        <GraphSection title="Vacinas por idade"></GraphSection>
+        <GraphSection title="Vacinas por data"></GraphSection>
       </section>
     </div>
   );
