@@ -1,23 +1,12 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-import {parse} from "../../utils/csv"
+import { NextApiRequest, NextApiResponse } from "next";
+import deadService from "../../services/deadService";
+import sickService from "../../services/sickService";
+import vacineService from "../../services/vacineService";
 
-export default function home(req:NextApiRequest, res:NextApiResponse){
-    //parse(path.resolve(__dirname, 'assets', 'snake_case_users.csv')"../../files/COVIDBR_1.csv", {});
-    res.status(200).json({
-        casos:{
-            estado: [],
-            idade: [],
-            data: []
-        },
-        mortes:{
-            estado: [],
-            idade: [],
-            data: []
-        },
-        vacina:{
-            estado: [],
-            idade: [],
-            data: []
-        }
-    })
+export default function home(req: NextApiRequest, res: NextApiResponse) {
+  res.status(200).json({
+    casos: sickService(),
+    mortes: deadService(),
+    vacina: vacineService(),
+  });
 }
