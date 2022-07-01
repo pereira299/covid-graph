@@ -27,15 +27,15 @@ export default async function deadService() {
     "11",
     "12",
   ];
-  const deadByMonth = [];
+  const deadByMonth:Array<any> = [];
   for (const month of months) {
     const dead = await axios.get(
       `https://covid19-brazil-api.now.sh/api/report/v1/brazil/2021${month}01`
     ).then(res => {
         deadByMonth.push(
-          res.data.data.reduce((acc, item) => {
+          {count:res.data.data.reduce((acc:any, item:any) => {
             return acc + item.deaths;
-          }, 0)
+          }, 0), label:`${month}/2021`}
         );
 
     })
@@ -43,7 +43,7 @@ export default async function deadService() {
   return {
     estado: data.data.data.map((item: covid) => {
       return {
-        state: item.state,
+        label: item.state,
         count: item.deaths,
       };
     }),

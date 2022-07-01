@@ -1,9 +1,10 @@
+import axios from "axios";
 import type { NextPage } from "next";
 import Image from "next/image";
 import GraphSection from "../components/GraphSection";
 import Header from "../components/Header";
 
-const Home: NextPage = () => {
+const Home: NextPage<dataCovid> = (props:dataCovid) => {
   return (
     <div>
       <Header />
@@ -57,9 +58,8 @@ const Home: NextPage = () => {
         </div>
       </section>
       <section className="graphs">
-        <GraphSection title="Casos por estado"></GraphSection>
-        <GraphSection title="Casos por idade"></GraphSection>
-        <GraphSection title="Casos por data"></GraphSection>
+        <GraphSection title="Casos por estado" data={props.casos.estado} chartType="bar" color="#2EAC59"></GraphSection>
+        <GraphSection title="Casos por data" data={props.casos.data} chartType="line" color="#1D81A0"></GraphSection>
       </section>
       <section
         className="flex flex-row bg-no-repeat pt-40 justify-around"
@@ -85,9 +85,8 @@ const Home: NextPage = () => {
         </div>
       </section>
       <section className="graphs">
-        <GraphSection title="Mortes por estado"></GraphSection>
-        <GraphSection title="Mortes por idade"></GraphSection>
-        <GraphSection title="Mortes por data"></GraphSection>
+        <GraphSection title="Mortes por estado" data={props.mortes.estado} chartType="bar" color="#2EAC59"></GraphSection>
+        <GraphSection title="Mortes por data" data={props.mortes.data} chartType="line" color="#1D81A0"></GraphSection>
       </section>
       <section
         className="flex flex-row bg-amber-500 pt-40 justify-around"
@@ -109,12 +108,29 @@ const Home: NextPage = () => {
         </div>
       </section>
       <section>
-        <GraphSection title="Vacinas por estado"></GraphSection>
-        <GraphSection title="Vacinas por idade"></GraphSection>
-        <GraphSection title="Vacinas por data"></GraphSection>
+        
       </section>
     </div>
   );
 };
 
 export default Home;
+
+type dataCovid = {
+  casos: itemCovid,
+  mortes: itemCovid,
+}
+
+type itemCovid = {
+  estado: Array<object>,
+  data: Array<object>,
+}
+export async function getStaticProps() {
+  const res = await axios.get("/api/home");
+  const data:dataCovid = res.data;
+  return {
+    props: {
+      data
+    },
+  };
+}
