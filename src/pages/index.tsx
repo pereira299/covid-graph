@@ -118,3 +118,21 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+{
+  casos:{
+      estado:[],
+      idade:[],
+      data:[],
+  },
+  mortes:{
+    estado:[],
+    idade:[],
+    data:[],
+  },
+  vacinas:{
+    estado:[],
+    idade:[],
+    data:[],
+  }
+}
